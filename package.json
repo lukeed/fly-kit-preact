@@ -1,12 +1,19 @@
 {
   "name": "fly-kit-preact",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "version": "0.0.0",
+  "private": true,
+  "description": "A starter kit for Preact front-end apps",
+  "license": "MIT",
+  "repository": "lukeed/fly-kit-web",
+  "author": {
+    "name": "Luke Edwards",
+    "email": "luke.edwards05@gmail.com",
+    "url": "https://lukeed.com"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "scripts": {
+    "build": "fly build",
+    "start": "fly release && serve",
+    "watch": "fly watch",
+    "test": "xo"
+  }
 }
