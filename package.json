@@ -16,11 +16,17 @@
     "watch": "fly watch",
     "test": "xo"
   },
+  "engines": {
+    "node": ">= 4.6.0"
+  },
   "dependencies": {
     "preact": "^7.1.0",
     "preact-router": "^2.3.2"
   },
   "devDependencies": {
+    "browser-sync": "^2.18.5",
+    "eslint-config-xo-react": "^0.10.0",
+    "eslint-plugin-react": "^6.8.0",
     "fly": "beta",
     "fly-autoprefixer": "^1.0.0",
     "fly-concat": "^1.1.0",
@@ -36,5 +42,12 @@
     "rollup-plugin-replace": "^1.1.1",
     "serve": "^2.0.0",
     "xo": "^0.17.1"
+  },
+  "xo": {
+    "extends": "xo-react",
+    "rules": {
+      "object-curly-spacing": 1,
+      "no-unused-expressions": 0
+    }
   }
 }
