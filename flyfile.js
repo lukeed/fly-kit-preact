@@ -7,12 +7,13 @@ const cUgly = require('./config/uglify');
 let isWatch = 0;
 
 const tar = 'dist';
+const rel = 'release';
 const node = 'node_modules';
 const src = {
 	js: 'src/scripts/**',
 	css: 'src/styles/**',
 	copy: [
-		'src/static/**/*',
+		'src/static/**/*.*',
 		'src/*.html'
 	],
 	vendor: [
@@ -21,7 +22,7 @@ const src = {
 };
 
 export async function clean() {
-	await this.clear(tar);
+	await this.clear([tar, rel]);
 }
 
 export async function copies(o) {
@@ -44,8 +45,7 @@ export async function styles() {
 }
 
 export async function build() {
-	await this.start('clean');
-	await this.serial(['copies', 'vendors', 'scripts', 'styles']); // @todo: parallel
+	await this.serial(['clean', 'copies', 'vendors', 'scripts', 'styles']); // @todo: parallel
 }
 
 export async function release() {
@@ -55,7 +55,7 @@ export async function release() {
 	// version assets
 	await this.source(`${tar}/**/*`).rev({
 		ignores: ['.html', '.png', '.svg', '.ico', '.json', '.txt']
-	}).revManifest({dest: tar}).revReplace().target(tar);
+	}).revManifest({dest: rel, trim: tar}).revReplace().target(rel);
 }
 
 export async function watch() {
