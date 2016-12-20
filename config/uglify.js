@@ -1,5 +1,6 @@
 'use strict';
 
+/* eslint camelcase:0 */
 module.exports = {
 	compress: {
 		conditionals: 1,
