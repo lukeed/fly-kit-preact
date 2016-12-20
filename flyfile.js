@@ -57,6 +57,12 @@ export async function release() {
 	await this.source(`${tar}/**/*`).rev({
 		ignores: ['.html', '.png', '.svg', '.ico', '.json', '.txt']
 	}).revManifest({dest: rel, trim: tar}).revReplace().target(rel);
+	// make assets available for offline
+	await this.source(`${rel}/**/*`).precache({
+		stripPrefix: rel,
+		cacheId: 'fly-kit-preact',
+		navigateFallback: 'index.html'
+	}).target(rel);
 }
 
 export async function watch() {
