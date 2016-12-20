@@ -1,9 +1,11 @@
 import {h, render} from 'preact';
+import {nav, isOk, onSuccess, onError} from './sw';
 import App from './views';
 
-let base;
-function init() {
-	base = render(<App/>, document.body, base);
-}
+// render app to document
+render(<App/>, document.body);
 
-init();
+if (isOk) {
+	// cache all assets if browser supports serviceworker
+	nav.serviceWorker.register('/service-worker.js').then(onSuccess).catch(onError);
+}
