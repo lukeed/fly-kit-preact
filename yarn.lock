@@ -1040,9 +1040,15 @@ escope@^3.6.0:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
-eslint-config-xo-react@^0.10.0:
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-xo-react/-/eslint-config-xo-react-0.10.0.tgz#780494298c45163480ba7c805f1304d408964d1d"
+eslint-config-xo-preact@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-xo-preact/-/eslint-config-xo-preact-1.0.0.tgz#6b538031fa6b27beeb04c099af66d0b1448a24ad"
+  dependencies:
+    eslint-config-xo-react "^0.9.0"
+
+eslint-config-xo-react@^0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-xo-react/-/eslint-config-xo-react-0.9.0.tgz#54e79c2e8e8fa8fc4f7bc7a7118df71082441cfc"
 
 eslint-config-xo@^0.17.0:
   version "0.17.0"
