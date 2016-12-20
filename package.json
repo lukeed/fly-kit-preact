@@ -15,5 +15,14 @@
     "start": "fly release && serve",
     "watch": "fly watch",
     "test": "xo"
+  },
+  "dependencies": {
+    "preact": "^7.1.0",
+    "preact-router": "^2.3.2"
+  },
+  "devDependencies": {
+    "fly": "beta",
+    "fly-esnext": "^2.0.0",
+    "serve": "^2.0.0"
   }
 }
