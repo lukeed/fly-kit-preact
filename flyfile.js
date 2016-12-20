@@ -9,24 +9,27 @@ let isWatch = 0;
 const tar = 'dist';
 const node = 'node_modules';
 const src = {
-	js: 'src/**/*.js',
-	css: 'src/**/*.s{a,c}ss',
-	copy: 'src/static/**',
+	js: 'src/scripts/**',
+	css: 'src/styles/**',
+	copy: [
+		'src/static/**/*',
+		'src/*.html'
+	],
 	vendor: [
 		// js vendors to be merged as `vendor.js`
 	]
-}
+};
 
 export async function clean() {
-	yield this.clear(tar);
+	await this.clear(tar);
 }
 
 export async function copies(o) {
-	await this.source(o.src || src.copy).target(`${tar}/static`);
+	await this.source(o.src || src.copy).target(tar);
 }
 
 export async function scripts() {
-	await this.source('src/index.js').xo().rollup(cRoll).concat('bundle.js').target(tar);
+	await this.source('src/scripts/app.js').xo().rollup(cRoll).target(`${tar}/js`);
 }
 
 export async function vendors() {
@@ -34,7 +37,7 @@ export async function vendors() {
 }
 
 export async function styles() {
-	await this.source('src/index.sass').sass({
+	await this.source('src/styles/app.sass').sass({
 		outputStyle: 'compressed',
 		includePaths: []
 	}).autoprefixer().target(`${tar}/css`);
@@ -61,7 +64,12 @@ export async function watch() {
 	await this.watch(src.js, ['scripts', 'reload']);
 	await this.watch(src.css, ['styles', 'reload']);
 	await this.watch(src.copy, ['copies', 'reload']);
-	bs({server: tar, port: process.env.PORT});
+	// start server
+	bs({
+		server: tar,
+		logPrefix: 'Fly',
+		port: process.env.PORT || 3000
+	});
 }
 
 export async function reload() {
