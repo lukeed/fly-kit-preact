@@ -39,7 +39,7 @@ export async function vendors() {
 export async function styles() {
 	await this.source('src/styles/app.sass').sass({
 		outputStyle: 'compressed',
-		includePaths: []
+		includePaths: [`${node}/md-colors/src`]
 	}).autoprefixer().target(`${tar}/css`);
 }
 

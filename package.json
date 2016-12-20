@@ -20,6 +20,7 @@
     "node": ">= 4.6.0"
   },
   "dependencies": {
+    "md-colors": "^1.0.0",
     "preact": "^7.1.0",
     "preact-router": "^2.3.2"
   },
