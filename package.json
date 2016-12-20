@@ -12,7 +12,7 @@
   },
   "scripts": {
     "build": "fly build",
-    "start": "fly release && serve dist -s",
+    "start": "fly release && serve release -s",
     "watch": "fly watch",
     "test": "xo"
   },
@@ -46,6 +46,9 @@
     "xo": "^0.17.1"
   },
   "xo": {
+    "ignores": [
+      "release/**"
+    ],
     "envs": [
       "browser"
     ],
