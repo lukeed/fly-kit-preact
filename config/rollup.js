@@ -1,4 +1,3 @@
-const jsx = require('rollup-plugin-jsx');
 const buble = require('rollup-plugin-buble');
 const replace = require('rollup-plugin-replace');
 const resolve = require('rollup-plugin-node-resolve');
@@ -6,10 +5,14 @@ const resolve = require('rollup-plugin-node-resolve');
 module.exports = {
 	rollup: {
 		plugins: [
-			buble(),
-			jsx({factory: 'h'}),
-			resolve({browser: true, jsnext: true}),
-			replace({'process.env.NODE_ENV': JSON.stringify('production')})
+			buble({
+				jsx: 'h',
+				transforms: {
+					modules: false
+				}
+			}),
+			replace({'process.env.NODE_ENV': JSON.stringify('production')}),
+			resolve({browser: true, jsnext: true})
 		]
 	},
 	bundle: {
