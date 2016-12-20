@@ -1,3 +1,9 @@
-import { h, Component } from 'preact';
+import {h, render} from 'preact';
+import App from './views';
 
-console.log(h, Component);
+let base;
+function init() {
+	base = render(<App/>, document.body, base);
+}
+
+init();
