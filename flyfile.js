@@ -68,7 +68,10 @@ export async function watch() {
 	bs({
 		server: tar,
 		logPrefix: 'Fly',
-		port: process.env.PORT || 3000
+		port: process.env.PORT || 3000,
+		middleware: [
+			require('connect-history-api-fallback')()
+		]
 	});
 }
 
