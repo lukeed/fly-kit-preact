@@ -60,7 +60,6 @@ export async function release() {
 	// make assets available for offline
 	await this.source(`${rel}/**/*`).precache({
 		stripPrefix: rel,
-		cacheId: 'fly-kit-preact',
 		navigateFallback: 'index.html'
 	}).target(rel);
 }
