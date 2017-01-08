@@ -3341,6 +3341,10 @@ rimraf@2, rimraf@^2.2.8, rimraf@^2.4.2, rimraf@~2.5.1, rimraf@~2.5.4:
   dependencies:
     glob "^7.0.5"
 
+rollup-plugin-alias@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-alias/-/rollup-plugin-alias-1.2.0.tgz#13897948eb43cb4a88d8ba996c2baeacf1b1d6e8"
+
 rollup-plugin-buble@^0.15.0:
   version "0.15.0"
   resolved "https://registry.yarnpkg.com/rollup-plugin-buble/-/rollup-plugin-buble-0.15.0.tgz#83c3e89c7fd2266c7918f41ba3980313519c7fd0"
