@@ -32,7 +32,7 @@
     "connect-history-api-fallback": "^1.3.0",
     "eslint-config-xo-preact": "^1.0.0",
     "eslint-plugin-react": "^6.9.0",
-    "fly": "beta",
+    "fly": "^2.0.3",
     "fly-autoprefixer": "^1.1.0",
     "fly-clear": "^1.0.1",
     "fly-concat": "^1.2.0",
