@@ -46,7 +46,7 @@ export async function styles(fly) {
 }
 
 export async function build(fly) {
-	await fly.serial(['clean', 'copies', 'vendors', 'scripts', 'styles']); // @todo: parallel
+	await fly.parallel(['clean', 'copies', 'vendors', 'scripts', 'styles']);
 }
 
 export async function release(fly) {
