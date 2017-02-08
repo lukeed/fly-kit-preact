@@ -30,8 +30,10 @@ export async function copies(fly, o) {
 	await fly.source(o.src || src.copy).target(tar);
 }
 
+let conf;
 export async function scripts(fly) {
-	await fly.source('src/scripts/app.js').xo().rollup(cRoll).target(`${tar}/js`);
+	conf = conf || cRoll(isWatch && 'development');
+	await fly.source('src/scripts/app.js').xo().rollup(conf).target(`${tar}/js`);
 }
 
 export async function vendors(fly) {
@@ -40,8 +42,8 @@ export async function vendors(fly) {
 
 export async function styles(fly) {
 	await fly.source('src/styles/app.sass').sass({
-		outputStyle: 'compressed',
-		includePaths: [`${node}/md-colors/src`]
+		includePaths: [`${node}/md-colors/src`],
+		outputStyle: 'compressed'
 	}).autoprefixer().target(`${tar}/css`);
 }
 
