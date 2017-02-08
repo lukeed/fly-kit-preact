@@ -22,54 +22,54 @@ const src = {
 	]
 };
 
-export async function clean() {
-	await this.clear([tar, rel]);
+export async function clean(fly) {
+	await fly.clear([tar, rel]);
 }
 
-export async function copies(o) {
-	await this.source(o.src || src.copy).target(tar);
+export async function copies(fly, o) {
+	await fly.source(o.src || src.copy).target(tar);
 }
 
-export async function scripts() {
-	await this.source('src/scripts/app.js').xo().rollup(cRoll).target(`${tar}/js`);
+export async function scripts(fly) {
+	await fly.source('src/scripts/app.js').xo().rollup(cRoll).target(`${tar}/js`);
 }
 
-export async function vendors() {
-	await this.source(src.vendor).concat('vendor.js').target(`${tar}/js`);
+export async function vendors(fly) {
+	await fly.source(src.vendor).concat('vendor.js').target(`${tar}/js`);
 }
 
-export async function styles() {
-	await this.source('src/styles/app.sass').sass({
+export async function styles(fly) {
+	await fly.source('src/styles/app.sass').sass({
 		outputStyle: 'compressed',
 		includePaths: [`${node}/md-colors/src`]
 	}).autoprefixer().target(`${tar}/css`);
 }
 
-export async function build() {
-	await this.serial(['clean', 'copies', 'vendors', 'scripts', 'styles']); // @todo: parallel
+export async function build(fly) {
+	await fly.serial(['clean', 'copies', 'vendors', 'scripts', 'styles']); // @todo: parallel
 }
 
-export async function release() {
-	await this.start('build');
+export async function release(fly) {
+	await fly.start('build');
 	// minify js
-	await this.source(`${tar}/js/*`).uglify(cUgly).target(`${tar}/js`);
+	await fly.source(`${tar}/js/*`).uglify(cUgly).target(`${tar}/js`);
 	// version assets
-	await this.source(`${tar}/**/*`).rev({
+	await fly.source(`${tar}/**/*`).rev({
 		ignores: ['.html', '.png', '.svg', '.ico', '.json', '.txt']
 	}).revManifest({dest: rel, trim: tar}).revReplace().target(rel);
 	// make assets available for offline
-	await this.source(`${rel}/**/*`).precache({
+	await fly.source(`${rel}/**/*`).precache({
 		stripPrefix: rel,
 		navigateFallback: 'index.html'
 	}).target(rel);
 }
 
-export async function watch() {
+export async function watch(fly) {
 	isWatch = 1;
-	await this.start('build');
-	await this.watch(src.js, ['scripts', 'reload']);
-	await this.watch(src.css, ['styles', 'reload']);
-	await this.watch(src.copy, ['copies', 'reload']);
+	await fly.start('build');
+	await fly.watch(src.js, ['scripts', 'reload']);
+	await fly.watch(src.css, ['styles', 'reload']);
+	await fly.watch(src.copy, ['copies', 'reload']);
 	// start server
 	bs({
 		server: tar,
