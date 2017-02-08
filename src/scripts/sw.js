@@ -3,21 +3,8 @@
 // Using a service worker from an insecure origin will trigger JS console errors
 // @docs: http://www.chromium.org/Home/chromium-security/prefer-secure-origins-for-powerful-new-features
 
-const loc = window.location;
-
+export const loc = window.location;
 export const nav = window.navigator;
-
-const isLocalhost = Boolean(loc.hostname === 'localhost' ||
-	// [::1] is the IPv6 localhost address.
-	loc.hostname === '[::1]' ||
-	// 127.0.0.1/8 is considered localhost for IPv4.
-	loc.hostname.match(
-		/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
-	)
-);
-
-// If serviceWorkers are supported & should be initialized here
-export const isOk = ('serviceWorker' in nav && (loc.protocol === 'https:' || isLocalhost));
 
 // If successefully registered, continue with caching
 export function onSuccess(registration) {
