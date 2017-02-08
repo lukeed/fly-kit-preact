@@ -13,7 +13,8 @@
   "scripts": {
     "build": "fly build",
     "release": "fly build release",
-    "start": "fly release && serve release -s",
+    "prestart": "npm run release",
+    "start": "serve release -s",
     "watch": "fly watch",
     "test": "xo"
   },
