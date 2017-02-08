@@ -50,7 +50,6 @@ export async function build(fly) {
 }
 
 export async function release(fly) {
-	await fly.start('build');
 	// minify js
 	await fly.source(`${tar}/js/*`).uglify(cUgly).target(`${tar}/js`);
 	// version assets
@@ -59,8 +58,8 @@ export async function release(fly) {
 	}).revManifest({dest: rel, trim: tar}).revReplace().target(rel);
 	// make assets available for offline
 	await fly.source(`${rel}/**/*`).precache({
-		stripPrefix: rel,
-		navigateFallback: 'index.html'
+		navigateFallback: 'index.html',
+		stripPrefix: rel
 	}).target(rel);
 }
 
